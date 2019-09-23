@@ -34,4 +34,8 @@ public class ReversePolishNotationTest {
 
         assertThat(resultRPN).isEqualTo(8);
     }
+
+    @Test
+    public void name() {
+    }
 }
