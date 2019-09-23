@@ -1,7 +1,6 @@
 package fr.lacombe.rpn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReversePolishNotation {
@@ -23,16 +22,30 @@ public class ReversePolishNotation {
         int result = numbers.get(0);
         numbers.remove(0);
 
+        List<Integer> number = new ArrayList<>();
+        for (String str: input.split(SEPARATOR)) {
+            if(isNumeric(str)) {
+                number.add(Integer.parseInt(str));
+            }
+            else{
+               int resultat =  new Calculator(str)
+                        .calculate(number.get(number.size() - 2), number.get(number.size() - 1));
+               number.remove(number.size() - 1);
+               number.remove(number.size() - 1);
+               number.add(resultat);
+            }
+        }
+/*
         for (Integer number : numbers) {
             if (operators.get(0).equals("+")) {
                 result += number;
             } else if (operators.get(0).equals("-")) {
                 result -= number;
-            }
-            operators.remove(0);
-        }
+            }*/
+         //   operators.remove(0);
+       // }
 
-        return result;
+        return number.get(0);
     }
 
     private List<String> getOperators(String input) {
