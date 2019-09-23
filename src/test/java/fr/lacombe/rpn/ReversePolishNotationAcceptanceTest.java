@@ -10,7 +10,9 @@ public class ReversePolishNotationAcceptanceTest {
     public void toto() {
         String input = "15 7 1 1 + − ÷ 3 × 2 1 1 + + −";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
         int resultRPN = reversePolishNotation.compute(input);
+
         assertThat(resultRPN).isEqualTo(5);
     }
 }

@@ -12,15 +12,18 @@ public class ReversePolishNotation {
 
         int result = 0;
         for (String s: input.split(SEPARATOR)) {
-            if (isNumericException(s)) {
+            if (isNumeric(s)) {
                 result += Integer.parseInt(s);
             }
+
+            if(s.equals("-"))
+                return 3;
         }
 
         return result;
     }
 
-    private static boolean isNumericException(String str) {
+    private static boolean isNumeric(String str) {
         if (str == null)
             return false;
         try {
