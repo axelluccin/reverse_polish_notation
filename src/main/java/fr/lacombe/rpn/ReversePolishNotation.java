@@ -5,16 +5,29 @@ public class ReversePolishNotation {
     private static final String SEPARATOR = " ";
 
     public int compute(String input) {
-        if (input.isEmpty()) {
-            return 0;
+
+        if (input.length() == 1) {
+            return Integer.parseInt(input);
         }
 
-        String[] str = input.split(SEPARATOR);
-
-        if(str.length > 1) {
-            return Integer.parseInt(str[0]) + Integer.parseInt(str[1]);
+        int result = 0;
+        for (String s: input.split(SEPARATOR)) {
+            if (isNumericException(s)) {
+                result += Integer.parseInt(s);
+            }
         }
 
-        return Integer.parseInt(input);
+        return result;
+    }
+
+    private static boolean isNumericException(String str) {
+        if (str == null)
+            return false;
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

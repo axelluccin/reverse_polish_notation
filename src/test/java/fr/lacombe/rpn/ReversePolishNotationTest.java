@@ -26,7 +26,7 @@ public class ReversePolishNotationTest {
     }
 
     @Test
-    public void when_input_contain_a_addition_then_compute_rpn_calculator_equals_the_sum() {
+    public void when_input_contain_one_addition_then_compute_rpn_calculator_equals_the_sum() {
         String input = "5 3 +";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
@@ -36,6 +36,12 @@ public class ReversePolishNotationTest {
     }
 
     @Test
-    public void name() {
+    public void when_input_contain_two_addition_then_compute_rpn_equals_the_sum() {
+        String input = "5 4 3 + +";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
+        int resultRPN = reversePolishNotation.compute(input);
+
+        assertThat(resultRPN).isEqualTo(12);
     }
 }
