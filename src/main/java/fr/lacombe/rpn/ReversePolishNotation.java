@@ -19,14 +19,17 @@ public class ReversePolishNotation {
 
         List<Integer> numbers = getNumbers(input);
         List<String> operators = getOperators(input);
+
         int result = numbers.get(0);
         numbers.remove(0);
+
         for (Integer number : numbers) {
             if (operators.get(0).equals("+")) {
                 result += number;
             } else if (operators.get(0).equals("-")) {
                 result -= number;
             }
+            operators.remove(0);
         }
 
         return result;
@@ -39,7 +42,6 @@ public class ReversePolishNotation {
                 operators.add(s);
             }
         }
-        Collections.reverse(operators);
         return operators;
     }
 

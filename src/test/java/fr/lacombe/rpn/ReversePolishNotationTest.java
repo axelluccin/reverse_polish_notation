@@ -2,6 +2,8 @@ package fr.lacombe.rpn;
 
 import org.junit.Test;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReversePolishNotationTest {
@@ -63,5 +65,15 @@ public class ReversePolishNotationTest {
         int resultRPN = reversePolishNotation.compute(input);
 
         assertThat(resultRPN).isEqualTo(1);
+    }
+
+    @Test
+    public void when_input_contain_one_subtraction_and_one_addition_then_compute_rpn_calculator_equal_the_compute() {
+        String input = "20 17 2 - +";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
+        int resultRPN = reversePolishNotation.compute(input);
+
+        assertThat(resultRPN).isEqualTo(5);
     }
 }
