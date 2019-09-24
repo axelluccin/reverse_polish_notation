@@ -10,13 +10,13 @@ public enum Operator {
     SUBTRACTION("-") {
         @Override
         int compute(int firstValue, int secondValue) {
-            return firstValue - secondValue;
+            return secondValue - firstValue;
         }
     },
     DIVISION("÷") {
         @Override
         int compute(int firstValue, int secondValue) {
-            return firstValue / secondValue;
+            return secondValue / firstValue;
         }
     };
 

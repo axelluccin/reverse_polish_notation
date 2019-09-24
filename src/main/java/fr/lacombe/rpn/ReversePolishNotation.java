@@ -1,7 +1,6 @@
 package fr.lacombe.rpn;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public class ReversePolishNotation {
 
@@ -13,19 +12,16 @@ public class ReversePolishNotation {
             return 0;
         }
 
-        List<Integer> number = new ArrayList<>();
+        Stack<Integer> number = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
             if (isNumeric(str)) {
-                number.add(Integer.parseInt(str));
+                number.push(Integer.parseInt(str));
             } else {
-                int result = Operator.of(str).compute(number.get(number.size() - 2), number.get(number.size() - 1));
-                number.remove(number.size() - 1);
-                number.remove(number.size() - 1);
-                number.add(result);
+                number.push(Operator.of(str).compute(number.pop(), number.pop()));
             }
         }
 
-        return number.get(0);
+        return number.pop();
     }
 
     private static boolean isNumeric(String str) {
