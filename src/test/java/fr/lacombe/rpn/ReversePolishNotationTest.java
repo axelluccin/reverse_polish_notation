@@ -2,8 +2,6 @@ package fr.lacombe.rpn;
 
 import org.junit.Test;
 
-import java.util.Map;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReversePolishNotationTest {
@@ -86,5 +84,15 @@ public class ReversePolishNotationTest {
         int resultRPN = reversePolishNotation.compute(input);
 
         assertThat(resultRPN).isEqualTo(39);
+    }
+
+    @Test
+    public void when_input_contain_one_division_then_compute_rpn_calculator_equal_the_division_of_2_number() {
+        String input = "25 5 ÷";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
+        int resultRPN = reversePolishNotation.compute(input);
+
+        assertThat(resultRPN).isEqualTo(5);
     }
 }

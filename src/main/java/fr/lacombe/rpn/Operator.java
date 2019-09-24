@@ -12,6 +12,12 @@ public enum Operator {
         int compute(int firstValue, int secondValue) {
             return firstValue - secondValue;
         }
+    },
+    DIVISION("÷") {
+        @Override
+        int compute(int firstValue, int secondValue) {
+            return firstValue / secondValue;
+        }
     };
 
     private String operator;
@@ -21,11 +27,13 @@ public enum Operator {
     }
 
     public static Operator of(String operator) {
-        if(operator.compareTo(ADDITION.operator) == 0) {
+        if(operator.equals(ADDITION.operator)) {
             return ADDITION;
         }
-
-        return SUBTRACTION;
+        if (operator.equals(SUBTRACTION.operator)) {
+            return SUBTRACTION;
+        }
+        return DIVISION;
     }
 
     abstract int compute(int firstValue, int secondValue);
