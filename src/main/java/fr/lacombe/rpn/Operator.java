@@ -18,6 +18,12 @@ public enum Operator {
         int compute(int firstValue, int secondValue) {
             return secondValue / firstValue;
         }
+    },
+    MULTIPLICATION("×") {
+        @Override
+        int compute(int firstValue, int secondValue) {
+            return firstValue * secondValue;
+        }
     };
 
     private String operator;
@@ -27,13 +33,17 @@ public enum Operator {
     }
 
     public static Operator of(String operator) {
+
         if(operator.equals(ADDITION.operator)) {
             return ADDITION;
         }
         if (operator.equals(SUBTRACTION.operator)) {
             return SUBTRACTION;
         }
-        return DIVISION;
+        if (operator.equals(DIVISION.operator)) {
+            return DIVISION;
+        }
+        return MULTIPLICATION;
     }
 
     abstract int compute(int firstValue, int secondValue);

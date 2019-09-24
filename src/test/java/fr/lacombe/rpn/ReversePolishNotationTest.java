@@ -95,4 +95,16 @@ public class ReversePolishNotationTest {
 
         assertThat(resultRPN).isEqualTo(5);
     }
+
+    @Test
+    public void when_input_contain_one_multiplication_then_compute_rpn_calculator_equal_the_multiplication_of_2_number() {
+        String input = "2 3 ×";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
+        int resultRPN = reversePolishNotation.compute(input);
+
+        assertThat(resultRPN).isEqualTo(6);
+    }
+
+
 }

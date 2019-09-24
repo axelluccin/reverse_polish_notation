@@ -15,9 +15,9 @@ public class ReversePolishNotation {
         Stack<Integer> number = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
             if (isNumeric(str)) {
-                number.push(Integer.parseInt(str));
+                number.add(Integer.parseInt(str));
             } else {
-                number.push(Operator.of(str).compute(number.pop(), number.pop()));
+                number.add(Operator.of(str).compute(number.pop(), number.pop()));
             }
         }
 
