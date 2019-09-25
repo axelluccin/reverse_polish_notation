@@ -8,33 +8,39 @@ public class ReversePolishNotation {
 
     public String compute(String input) {
 
-        if (!isValid(input)) {
+        if (isNotValid(input)) {
             return "0";
         }
 
-        Stack<Integer> number = new Stack<>();
+        Stack<Integer> numbers = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
             if (isNumeric(str)) {
-                number.push(Integer.parseInt(str));
+                numbers.push(Integer.parseInt(str));
             } else {
-                number.push(Operator.of(str).compute(number.pop(), number.pop()));
+                numbers.push(Operator.of(str).compute(numbers.pop(), numbers.pop()));
             }
         }
 
-        return result(number);
+        return result(numbers);
     }
 
     private String result(Stack<Integer> number) {
-        String str = "";
-        for(Integer num: number)
-        {
-            str += num + " ";
+        String stringResult = "";
+        for (Integer num : number) {
+            stringResult += num + SEPARATOR;
         }
-        return str.trim();
+        return stringResult.trim();
     }
 
-    private boolean isValid(String input) {
-        return !(input.equals("") || input.equals(" "));
+    private boolean isNotValid(String input) {
+        if (input.isEmpty() || input.equals(SEPARATOR)) {
+            return true;
+        }
+
+        if (input.length() == 3) {
+            throw new IllegalArgumentException("Pas le bon nombre d'argument");
+        }
+        return false;
     }
 
     private static boolean isNumeric(String str) {

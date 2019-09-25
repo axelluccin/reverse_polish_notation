@@ -117,12 +117,24 @@ public class ReversePolishNotationTest {
     }
 
     @Test
-    public void when_input_contain_one_operator_and_4_number_then_compute_calculator_equal_the_compute_of_two_number_and_two_number() {
+    public void when_input_contain_one_operator_and_4_number_then_compute_rpn_equal_the_compute_of_two_number_and_two_number() {
         String input = "7 2 - 3 4";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
         String resultRPN = reversePolishNotation.compute(input);
 
         assertThat(resultRPN).isEqualTo("5 3 4");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void when_input_contain_1_operator_and_1_number_then_compute_rpn_throw_illegalArgumentException() {
+        String input = "- 4";
+        new ReversePolishNotation().compute(input);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void when_input_contain_a_foreign_string_then_compute_rpn_throw_illegalArgumentException() {
+        String input = "5 6 Y";
+        new ReversePolishNotation().compute(input);
     }
 }

@@ -34,7 +34,8 @@ public enum Operator {
 
     public static Operator of(String operator) {
 
-        if(operator.equals(ADDITION.operator)) {
+
+        if (operator.equals(ADDITION.operator)) {
             return ADDITION;
         }
         if (operator.equals(SUBTRACTION.operator)) {
@@ -43,7 +44,10 @@ public enum Operator {
         if (operator.equals(DIVISION.operator)) {
             return DIVISION;
         }
-        return MULTIPLICATION;
+        if (operator.equals(MULTIPLICATION.operator)) {
+            return MULTIPLICATION;
+        }
+        throw new IllegalArgumentException("Operator unrecognized");
     }
 
     abstract int compute(int firstValue, int secondValue);
