@@ -6,10 +6,10 @@ public class ReversePolishNotation {
 
     private static final String SEPARATOR = " ";
 
-    public int compute(String input) {
+    public String compute(String input) {
 
-        if (input.equals("") || input.equals(" ")) {
-            return 0;
+        if (!isValid(input)) {
+            return "0";
         }
 
         Stack<Integer> number = new Stack<>();
@@ -21,7 +21,20 @@ public class ReversePolishNotation {
             }
         }
 
-        return number.pop();
+        return result(number);
+    }
+
+    private String result(Stack<Integer> number) {
+        String str = "";
+        for(Integer num: number)
+        {
+            str += num + " ";
+        }
+        return str.trim();
+    }
+
+    private boolean isValid(String input) {
+        return !(input.equals("") || input.equals(" "));
     }
 
     private static boolean isNumeric(String str) {

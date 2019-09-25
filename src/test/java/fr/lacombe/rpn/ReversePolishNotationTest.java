@@ -10,9 +10,9 @@ public class ReversePolishNotationTest {
         String input = "";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(0);
+        assertThat(resultRPN).isEqualTo("0");
     }
 
     @Test
@@ -20,9 +20,9 @@ public class ReversePolishNotationTest {
         String input = "6";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(6);
+        assertThat(resultRPN).isEqualTo("6");
     }
 
     @Test
@@ -30,9 +30,9 @@ public class ReversePolishNotationTest {
         String input = "5 3 +";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(8);
+        assertThat(resultRPN).isEqualTo("8");
     }
 
     @Test
@@ -40,9 +40,9 @@ public class ReversePolishNotationTest {
         String input = "5 4 3 + +";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(12);
+        assertThat(resultRPN).isEqualTo("12");
     }
 
     @Test
@@ -50,9 +50,9 @@ public class ReversePolishNotationTest {
         String input = "7 4 -";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(3);
+        assertThat(resultRPN).isEqualTo("3");
     }
 
     @Test
@@ -60,9 +60,9 @@ public class ReversePolishNotationTest {
         String input = "7 4 2 - -";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(5);
+        assertThat(resultRPN).isEqualTo("5");
     }
 
     @Test
@@ -70,9 +70,9 @@ public class ReversePolishNotationTest {
         String input = "20 17 - 2 +";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(5);
+        assertThat(resultRPN).isEqualTo("5");
     }
 
     @Test
@@ -81,9 +81,9 @@ public class ReversePolishNotationTest {
 
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(39);
+        assertThat(resultRPN).isEqualTo("39");
     }
 
     @Test
@@ -91,9 +91,9 @@ public class ReversePolishNotationTest {
         String input = "25 5 ÷";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(5);
+        assertThat(resultRPN).isEqualTo("5");
     }
 
     @Test
@@ -101,9 +101,9 @@ public class ReversePolishNotationTest {
         String input = "2 3 ×";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultRPN = reversePolishNotation.compute(input);
+        String resultRPN = reversePolishNotation.compute(input);
 
-        assertThat(resultRPN).isEqualTo(6);
+        assertThat(resultRPN).isEqualTo("6");
     }
 
     @Test
@@ -111,8 +111,18 @@ public class ReversePolishNotationTest {
         String input = " ";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
-        int resultTPN = reversePolishNotation.compute(input);
+        String resultTPN = reversePolishNotation.compute(input);
 
-        assertThat(resultTPN).isEqualTo(0);
+        assertThat(resultTPN).isEqualTo("0");
+    }
+
+    @Test
+    public void when_input_contain_one_operator_and_4_number_then_compute_calculator_equal_the_compute_of_two_number_and_two_number() {
+        String input = "7 2 - 3 4";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
+
+        String resultRPN = reversePolishNotation.compute(input);
+
+        assertThat(resultRPN).isEqualTo("5 3 4");
     }
 }
