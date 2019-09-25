@@ -8,16 +8,16 @@ public class ReversePolishNotation {
 
     public int compute(String input) {
 
-        if (input.equals("")) {
+        if (input.equals("") || input.equals(" ")) {
             return 0;
         }
 
         Stack<Integer> number = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
             if (isNumeric(str)) {
-                number.add(Integer.parseInt(str));
+                number.push(Integer.parseInt(str));
             } else {
-                number.add(Operator.of(str).compute(number.pop(), number.pop()));
+                number.push(Operator.of(str).compute(number.pop(), number.pop()));
             }
         }
 

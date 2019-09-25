@@ -97,7 +97,7 @@ public class ReversePolishNotationTest {
     }
 
     @Test
-    public void when_input_contain_one_multiplication_then_compute_rpn_calculator_equal_the_multiplication_of_2_number() {
+    public void when_input_contain_one_multiplication_then_compute_rpn_equal_the_multiplication_of_2_number() {
         String input = "2 3 ×";
         ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
@@ -106,5 +106,13 @@ public class ReversePolishNotationTest {
         assertThat(resultRPN).isEqualTo(6);
     }
 
+    @Test
+    public void when_input_is_a_space_then_compute_rpn_calculator_equal_0() {
+        String input = " ";
+        ReversePolishNotation reversePolishNotation = new ReversePolishNotation();
 
+        int resultTPN = reversePolishNotation.compute(input);
+
+        assertThat(resultTPN).isEqualTo(0);
+    }
 }
