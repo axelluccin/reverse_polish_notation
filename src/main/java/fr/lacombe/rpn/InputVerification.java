@@ -6,9 +6,9 @@ public class InputVerification {
 
     public void verify(String input) {
         emptyString(input);
-        justASpace(input);
+        isASpace(input);
         onlyOperator(input);
-        operatorPosition(input);
+        badOperatorPosition(input);
         characterUnrecognized(input);
         moreOperatorsThanNumber(input);
     }
@@ -45,10 +45,14 @@ public class InputVerification {
         }
     }
 
-    private void operatorPosition(String input) {
-        if (operatorAtTheSecondPlace(input) || operatorRecognize(input.split(" ")[0])) {
+    private void badOperatorPosition(String input) {
+        if (operatorAtTheFirstPlace(input) || operatorAtTheSecondPlace(input)) {
             throw new IllegalArgumentException("Operator should not be at this place");
         }
+    }
+
+    private boolean operatorAtTheFirstPlace(String input) {
+        return operatorRecognize(input.split(SPACE_SEPARATION)[0]);
     }
 
     private boolean operatorAtTheSecondPlace(String input) {
@@ -61,7 +65,7 @@ public class InputVerification {
         }
     }
 
-    private void justASpace(String input) {
+    private void isASpace(String input) {
         if (input.equals(SPACE_SEPARATION)) {
             throw new IllegalArgumentException("Input should not contain just a space");
         }
