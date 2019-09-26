@@ -10,23 +10,26 @@ public class InputVerification {
     }
 
     private void operatorPosition(String input) {
-        if (input.length() > 3 && !Numeric.isNumeric(input.split(" ")[1]))
+        if (input.length() > 3 && !Numeric.isNumeric(input.split(" ")[1])) {
             throw new IllegalArgumentException("Operator should not be at this place");
+        }
     }
 
     private void onlyOperator(String input) {
-        if (!Numeric.isNumeric(input.split(" ")[0])) {
+        if (input.length() == 1 && !Numeric.isNumeric(input.split(" ")[0])) {
             throw new IllegalArgumentException("Input should not contain just one operator");
         }
     }
 
     private void justASpace(String input) {
-        if (input.equals(" "))
+        if (input.equals(" ")) {
             throw new IllegalArgumentException("Input should not contain just a space");
+        }
     }
 
     private void emptyString(String input) {
-        if (input.equals(""))
+        if (input.equals("")) {
             throw new IllegalArgumentException("Input should not be empty");
+        }
     }
 }
