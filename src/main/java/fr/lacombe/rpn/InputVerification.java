@@ -1,5 +1,7 @@
 package fr.lacombe.rpn;
 
+import static fr.lacombe.rpn.Operator.isOperator;
+
 public class InputVerification {
 
     private static final String SPACE_SEPARATION = " ";
@@ -15,17 +17,10 @@ public class InputVerification {
 
     private void characterUnrecognized(String input) {
         for (String strTemp : input.split(SPACE_SEPARATION)) {
-            if (!Numeric.isNumeric(strTemp) && !operatorRecognize(strTemp)) {
+            if (!Numeric.isNumeric(strTemp) && !isOperator(strTemp)) {
                 throw new IllegalArgumentException("There is a character unrecognized");
             }
         }
-    }
-
-    private boolean operatorRecognize(String strTemp) {
-        return strTemp.equals("+")
-                || strTemp.equals("-")
-                || strTemp.equals("÷")
-                || strTemp.equals("×");
     }
 
     private void moreOperatorsThanNumber(String input) {
@@ -52,11 +47,11 @@ public class InputVerification {
     }
 
     private boolean operatorAtTheFirstPlace(String input) {
-        return operatorRecognize(input.split(SPACE_SEPARATION)[0]);
+        return isOperator(input.split(SPACE_SEPARATION)[0]);
     }
 
     private boolean operatorAtTheSecondPlace(String input) {
-        return input.length() > 3 && !Numeric.isNumeric(input.split(SPACE_SEPARATION)[1]);
+        return input.length() > 3 && isOperator(input.split(SPACE_SEPARATION)[1]);
     }
 
     private void onlyOperator(String input) {

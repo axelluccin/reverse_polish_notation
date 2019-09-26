@@ -49,5 +49,12 @@ public enum Operator {
         throw new IllegalArgumentException("Operator unrecognized");
     }
 
+    public static boolean isOperator(String input) {
+        return input.equals("+")
+                || input.equals("-")
+                || input.equals("÷")
+                || input.equals("×");
+    }
+
     abstract int compute(int firstValue, int secondValue);
 }
