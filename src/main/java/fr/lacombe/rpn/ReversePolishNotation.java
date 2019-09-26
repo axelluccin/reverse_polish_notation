@@ -2,6 +2,9 @@ package fr.lacombe.rpn;
 
 import java.util.Stack;
 
+import static fr.lacombe.rpn.Operator.of;
+import static java.lang.Integer.parseInt;
+
 public class ReversePolishNotation {
 
     private static final String SEPARATOR = " ";
@@ -15,9 +18,9 @@ public class ReversePolishNotation {
         Stack<Integer> numbers = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
             if (Numeric.isNumeric(str)) {
-                numbers.push(Integer.parseInt(str));
+                numbers.push(parseInt(str));
             } else {
-                numbers.push(Operator.of(str).compute(numbers.pop(), numbers.pop()));
+                numbers.push(of(str).compute(numbers.pop(), numbers.pop()));
             }
         }
         return result(numbers);
@@ -41,5 +44,4 @@ public class ReversePolishNotation {
         }
         return false;
     }
-
 }

@@ -1,11 +1,17 @@
 package fr.lacombe.rpn;
 
 public class InputVerification {
-    public boolean verify(String input) {
+    public void verify(String input) {
         emptyString(input);
         justASpace(input);
         onlyOperator(input);
-        throw new IllegalArgumentException("Operator should not be at this place");
+        operatorPosition(input);
+        throw new IllegalArgumentException("there is more operators than numbers");
+    }
+
+    private void operatorPosition(String input) {
+        if (input.length() > 3 && !Numeric.isNumeric(input.split(" ")[1]))
+            throw new IllegalArgumentException("Operator should not be at this place");
     }
 
     private void onlyOperator(String input) {
