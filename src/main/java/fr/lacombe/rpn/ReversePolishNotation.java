@@ -8,12 +8,15 @@ import static java.lang.Integer.parseInt;
 public class ReversePolishNotation {
 
     private static final String SEPARATOR = " ";
+    private InputVerification verification;
+
+    public ReversePolishNotation(InputVerification verification) {
+        this.verification = verification;
+    }
 
     public String compute(String input) {
 
-        if (isNotValid(input)) {
-            return "0";
-        }
+        verification.verify(input);
 
         Stack<Integer> numbers = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
@@ -32,16 +35,5 @@ public class ReversePolishNotation {
             stringResult.append(num).append(SEPARATOR);
         }
         return stringResult.toString().trim();
-    }
-
-    private boolean isNotValid(String input) {
-        if (input.isEmpty() || input.equals(SEPARATOR)) {
-            return true;
-        }
-
-        if (input.length() == 3) {
-            throw new IllegalArgumentException("");
-        }
-        return false;
     }
 }

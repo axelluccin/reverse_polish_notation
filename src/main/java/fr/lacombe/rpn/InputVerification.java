@@ -15,40 +15,44 @@ public class InputVerification {
 
     private void characterUnrecognized(String input) {
         for (String strTemp : input.split(SPACE_SEPARATION)) {
-            if (!Numeric.isNumeric(strTemp) && operatorNoRecognize(strTemp)) {
+            if (!Numeric.isNumeric(strTemp) && !operatorRecognize(strTemp)) {
                 throw new IllegalArgumentException("There is a character unrecognized");
             }
         }
     }
 
-    private boolean operatorNoRecognize(String strTemp) {
-        return !strTemp.equals("+")
-                && !strTemp.equals("-")
-                && !strTemp.equals("÷")
-                && !strTemp.equals("×");
+    private boolean operatorRecognize(String strTemp) {
+        return strTemp.equals("+")
+                || strTemp.equals("-")
+                || strTemp.equals("÷")
+                || strTemp.equals("×");
     }
 
     private void moreOperatorsThanNumber(String input) {
         int numbers = 0;
-        int operator = 0;
+        int operators = 0;
 
         for (String stringTemp : input.split(SPACE_SEPARATION)) {
             if (Numeric.isNumeric(stringTemp)) {
                 numbers++;
             } else {
-                operator++;
+                operators++;
             }
         }
 
-        if (operator > numbers) {
+        if (operators > numbers) {
             throw new IllegalArgumentException("there is more operators than numbers");
         }
     }
 
     private void operatorPosition(String input) {
-        if (input.length() > 3 && !Numeric.isNumeric(input.split(SPACE_SEPARATION)[1])) {
+        if (operatorAtTheSecondPlace(input) || operatorRecognize(input.split(" ")[0])) {
             throw new IllegalArgumentException("Operator should not be at this place");
         }
+    }
+
+    private boolean operatorAtTheSecondPlace(String input) {
+        return input.length() > 3 && !Numeric.isNumeric(input.split(SPACE_SEPARATION)[1]);
     }
 
     private void onlyOperator(String input) {
