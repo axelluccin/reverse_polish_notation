@@ -55,4 +55,13 @@ public class InputVerificationTest {
 
         verification.verify(input);
     }
+
+    @Test
+    public void when_input_contain_a_character_unrecognized_then_throw_an_exception() {
+        String input = "2 7 + g";
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("There is a character unrecognized");
+
+        verification.verify(input);
+    }
 }

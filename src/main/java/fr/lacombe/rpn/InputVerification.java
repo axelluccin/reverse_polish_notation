@@ -6,7 +6,26 @@ public class InputVerification {
         justASpace(input);
         onlyOperator(input);
         operatorPosition(input);
-        throw new IllegalArgumentException("there is more operators than numbers");
+        moreOperatorsThanNumber(input);
+        throw new IllegalArgumentException("There is a character unrecognized");
+    }
+
+    private void moreOperatorsThanNumber(String input) {
+        int numbers = 0;
+        int operator = 0;
+
+        for (String stringTemp : input.split(" ")) {
+            if (Numeric.isNumeric(stringTemp)) {
+                numbers++;
+            }
+            else {
+                operator++;
+            }
+        }
+
+        if (operator > numbers) {
+            throw new IllegalArgumentException("there is more operators than numbers");
+        }
     }
 
     private void operatorPosition(String input) {
