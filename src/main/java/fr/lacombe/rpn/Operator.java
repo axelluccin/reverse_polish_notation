@@ -46,14 +46,14 @@ public enum Operator {
         if (operator.equals(MULTIPLICATION.operator)) {
             return MULTIPLICATION;
         }
-        throw new IllegalArgumentException("Operator unrecognized");
+        return null;
     }
 
     public static boolean isOperator(String input) {
-        return input.equals("+")
-                || input.equals("-")
-                || input.equals("÷")
-                || input.equals("×");
+        return input.equals(ADDITION.operator)
+                || input.equals(SUBTRACTION.operator)
+                || input.equals(DIVISION.operator)
+                || input.equals(MULTIPLICATION.operator);
     }
 
     abstract int compute(int firstValue, int secondValue);
