@@ -8,11 +8,11 @@ public class InputVerificationTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private InputVerification verification = new InputVerification();
 
     @Test
     public void when_input_contain_a_empty_string_then_throw_an_exception() {
         String input = "";
-        InputVerification verification = new InputVerification();
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Input should not be empty");
 
@@ -22,9 +22,17 @@ public class InputVerificationTest {
     @Test
     public void when_input_contain_a_space_then_throw_an_exception() {
         String input = " ";
-        InputVerification verification = new InputVerification();
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Input should not contain just a space");
+
+        verification.verify(input);
+    }
+
+    @Test
+    public void when_input_contain_just_one_operator_then_throw_an_exception() {
+        String input = "+";
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Input should not contain just one operator");
 
         verification.verify(input);
     }
