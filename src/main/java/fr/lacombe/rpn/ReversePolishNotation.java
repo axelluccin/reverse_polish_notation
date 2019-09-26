@@ -20,16 +20,15 @@ public class ReversePolishNotation {
                 numbers.push(Operator.of(str).compute(numbers.pop(), numbers.pop()));
             }
         }
-
         return result(numbers);
     }
 
     private String result(Stack<Integer> number) {
-        String stringResult = "";
+        StringBuilder stringResult = new StringBuilder();
         for (Integer num : number) {
-            stringResult += num + SEPARATOR;
+            stringResult.append(num).append(SEPARATOR);
         }
-        return stringResult.trim();
+        return stringResult.toString().trim();
     }
 
     private boolean isNotValid(String input) {
@@ -38,7 +37,7 @@ public class ReversePolishNotation {
         }
 
         if (input.length() == 3) {
-            throw new IllegalArgumentException("Pas le bon nombre d'argument");
+            throw new IllegalArgumentException("");
         }
         return false;
     }

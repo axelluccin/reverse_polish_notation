@@ -34,7 +34,6 @@ public enum Operator {
 
     public static Operator of(String operator) {
 
-
         if (operator.equals(ADDITION.operator)) {
             return ADDITION;
         }
