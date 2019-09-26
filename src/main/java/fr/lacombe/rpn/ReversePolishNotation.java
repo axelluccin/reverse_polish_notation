@@ -14,7 +14,7 @@ public class ReversePolishNotation {
 
         Stack<Integer> numbers = new Stack<>();
         for (String str : input.split(SEPARATOR)) {
-            if (isNumeric(str)) {
+            if (Numeric.isNumeric(str)) {
                 numbers.push(Integer.parseInt(str));
             } else {
                 numbers.push(Operator.of(str).compute(numbers.pop(), numbers.pop()));
@@ -42,14 +42,4 @@ public class ReversePolishNotation {
         return false;
     }
 
-    private static boolean isNumeric(String str) {
-        if (str == null)
-            return false;
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
 }

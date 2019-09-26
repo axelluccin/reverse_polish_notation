@@ -36,4 +36,14 @@ public class InputVerificationTest {
 
         verification.verify(input);
     }
+
+
+    @Test
+    public void when_input_contain_one_operator_at_the_second_place_then_throw_an_exception() {
+        String input = "2 + 4";
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Operator should not be at this place");
+
+        verification.verify(input);
+    }
 }
