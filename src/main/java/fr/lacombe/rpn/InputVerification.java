@@ -1,24 +1,41 @@
 package fr.lacombe.rpn;
 
 public class InputVerification {
+
+    private static final String SPACE_SEPARATION = " ";
+
     public void verify(String input) {
         emptyString(input);
         justASpace(input);
         onlyOperator(input);
         operatorPosition(input);
+        characterUnrecognized(input);
         moreOperatorsThanNumber(input);
-        throw new IllegalArgumentException("There is a character unrecognized");
+    }
+
+    private void characterUnrecognized(String input) {
+        for (String strTemp : input.split(SPACE_SEPARATION)) {
+            if (!Numeric.isNumeric(strTemp) && operatorNoRecognize(strTemp)) {
+                throw new IllegalArgumentException("There is a character unrecognized");
+            }
+        }
+    }
+
+    private boolean operatorNoRecognize(String strTemp) {
+        return !strTemp.equals("+")
+                && !strTemp.equals("-")
+                && !strTemp.equals("÷")
+                && !strTemp.equals("×");
     }
 
     private void moreOperatorsThanNumber(String input) {
         int numbers = 0;
         int operator = 0;
 
-        for (String stringTemp : input.split(" ")) {
+        for (String stringTemp : input.split(SPACE_SEPARATION)) {
             if (Numeric.isNumeric(stringTemp)) {
                 numbers++;
-            }
-            else {
+            } else {
                 operator++;
             }
         }
@@ -29,19 +46,19 @@ public class InputVerification {
     }
 
     private void operatorPosition(String input) {
-        if (input.length() > 3 && !Numeric.isNumeric(input.split(" ")[1])) {
+        if (input.length() > 3 && !Numeric.isNumeric(input.split(SPACE_SEPARATION)[1])) {
             throw new IllegalArgumentException("Operator should not be at this place");
         }
     }
 
     private void onlyOperator(String input) {
-        if (input.length() == 1 && !Numeric.isNumeric(input.split(" ")[0])) {
+        if (input.length() == 1 && !Numeric.isNumeric(input.split(SPACE_SEPARATION)[0])) {
             throw new IllegalArgumentException("Input should not contain just one operator");
         }
     }
 
     private void justASpace(String input) {
-        if (input.equals(" ")) {
+        if (input.equals(SPACE_SEPARATION)) {
             throw new IllegalArgumentException("Input should not contain just a space");
         }
     }

@@ -49,7 +49,7 @@ public class InputVerificationTest {
 
     @Test
     public void when_input_contain_more_operators_than_number_should_throw_an_exception() {
-        String input = "3 4 + - *";
+        String input = "3 4 + + ×";
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("there is more operators than numbers");
 
