@@ -46,7 +46,7 @@ public enum Operator {
         if (operator.equals(MULTIPLICATION.operator)) {
             return MULTIPLICATION;
         }
-        return null;
+        throw new IllegalArgumentException("Operator unrecognized");
     }
 
     public static boolean isOperator(String input) {
